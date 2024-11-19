@@ -2057,6 +2057,7 @@ class Format:
                 labels["keypoints"][..., 0] /= w
                 labels["keypoints"][..., 1] /= h
         if self.return_obb:
+            #### START HERE FOR OBB
             labels["bboxes"] = (
                 xyxyxyxy2xywhr(torch.from_numpy(instances.segments)) if len(instances.segments) else torch.zeros((0, 5))
             )

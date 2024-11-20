@@ -539,12 +539,24 @@ def xyxyxyxy2xywhr(x):
     """
     is_torch = isinstance(x, torch.Tensor)
     points = x.cpu().numpy() if is_torch else x
+    # TODO: Convert points based on euclidean distance
     points = points.reshape(len(x), -1, 2)
     rboxes = []
     for pts in points:
         # NOTE: Use cv2.minAreaRect to get accurate xywhr,
         # especially some objects are cut off by augmentations in dataloader.
         (cx, cy), (w, h), angle = cv2.minAreaRect(pts)
+
+        # if w > h:
+        #     w, h = h, w
+        #     if pts[:2, -1].mean() < pts[-2:, -1].mean():
+        #         angle += 180
+        # if h > w:
+        #     if pts[:2, -1].mean() >= pts[-2:, -1].mean():
+        #         angle += 90
+        #     else:
+        #         angle += 270
+
         rboxes.append([cx, cy, w, h, angle / 180 * np.pi])
     return torch.tensor(rboxes, device=x.device, dtype=x.dtype) if is_torch else np.asarray(rboxes)
 

@@ -1,5 +1,7 @@
 # Ultralytics YOLO 🚀, AGPL-3.0 license
 
+### TODO: Fix wandb callbacks for other tasks
+
 from ultralytics.utils import SETTINGS, TESTS_RUNNING
 from ultralytics.utils.torch_utils import model_info_for_loggers
 

@@ -56,6 +56,12 @@ class YOLO(Model):
                 "validator": yolo.obb.OBBValidator,
                 "predictor": yolo.obb.OBBPredictor,
             },
+            "detectfb": {
+                "model": None,
+                "trainer": None,
+                "validator": None,
+                "predictor": None,
+            },
         }
 
 

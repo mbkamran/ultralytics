@@ -1,5 +1,7 @@
 # Ultralytics 🚀 AGPL-3.0 License - https://ultralytics.com/license
 
+### TODO: Add class DetectFBModel and code its loss
+
 import contextlib
 import pickle
 import re
@@ -382,6 +384,7 @@ class DetectionModel(BaseModel):
         """Initialize the loss criterion for the DetectionModel."""
         return E2EDetectLoss(self) if getattr(self, "end2end", False) else v8DetectionLoss(self)
 
+### Add 'DetectFBModel' here
 
 class OBBModel(DetectionModel):
     """YOLO Oriented Bounding Box (OBB) model."""

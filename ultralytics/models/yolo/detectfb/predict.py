@@ -7,32 +7,32 @@ from ultralytics.models.yolo.detect.predict import DetectionPredictor
 from ultralytics.utils import DEFAULT_CFG, ops
 
 
-class OBBPredictor(DetectionPredictor):
+class DetectFBPredictor(DetectionPredictor):
     """
-    A class extending the DetectionPredictor class for prediction based on an Oriented Bounding Box (OBB) model.
+    A class extending the DetectionPredictor class for prediction based on a DetectFB model.
 
     Example:
         ```python
         from ultralytics.utils import ASSETS
-        from ultralytics.models.yolo.obb import OBBPredictor
+        from ultralytics.models.yolo.detectfb import DetectFBPredictor
 
-        args = dict(model="yolo11n-obb.pt", source=ASSETS)
-        predictor = OBBPredictor(overrides=args)
+        args = dict(model="yolo11n.pt", source=ASSETS)
+        predictor = DetectFBPredictor(overrides=args)
         predictor.predict_cli()
         ```
     """
 
     def __init__(self, cfg=DEFAULT_CFG, overrides=None, _callbacks=None):
-        """Initializes OBBPredictor with optional model and data configuration overrides."""
+        """Initializes DetectFBPredictor with optional model and data configuration overrides."""
         super().__init__(cfg, overrides, _callbacks)
-        self.args.task = "obb"
+        self.args.task = "detectfb"
 
     def construct_result(self, pred, img, orig_img, img_path):
         """
         Constructs the result object from the prediction.
 
         Args:
-            pred (torch.Tensor): The predicted bounding boxes, scores, and rotation angles.
+            pred (torch.Tensor): The predicted bounding boxes, scores & FBvalues.
             img (torch.Tensor): The image after preprocessing.
             orig_img (np.ndarray): The original image before preprocessing.
             img_path (str): The path to the original image.

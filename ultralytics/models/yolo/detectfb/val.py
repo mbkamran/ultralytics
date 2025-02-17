@@ -10,9 +10,9 @@ from ultralytics.utils.metrics import OBBMetrics, batch_probiou
 from ultralytics.utils.plotting import output_to_rotated_target, plot_images
 
 
-class OBBValidator(DetectionValidator):
+class DetectFBValidator(DetectionValidator):
     """
-    A class extending the DetectionValidator class for validation based on an Oriented Bounding Box (OBB) model.
+    A class extending the DetectionValidator class for validation based on a DetectFB model.
 
     Example:
         ```python
